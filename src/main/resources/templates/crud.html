@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>市民活動団体一覧</title>
+</head>
+<body>
+	<h2>市民活動団体一覧</h2>
+	<h3 th:text="${title}">タイトル</h3>
+	<p th:if="${delcomplete}" th:text="${delcomplete}" style="color:blue"></p>
+	
+	<p th:if="${complete}" th:text="${complete}" style="color:blue"></p>
+	
+	<!--入力フォーム-->
+	<form method="POST"
+		th:action="${citizenForm.newCitizen}? @{/citizen/insert} :@{/citizen/update}"
+		th:object="${citizenForm}">
+		
+		<label>法人格：</label>
+		<select name="status"　th:field="*{status}">
+		<option value="任意団体">任意団体</option>
+		<option value="特定非営利活動法人">特定非営利活動法人</option>
+		<option value="社会福祉法人">社会福祉法人</option>
+		<option value="一般社団法人">一般社団法人</option>
+		</select>
+	
+		<label>団体名：</label>
+		<input type="text" th:field="*{name}"/>
+		<br>
+		<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
+		<label>活動内容：</label><br>
+		<textarea rows="5" cols="50" th:field="*{activity}"></textarea>
+		<br>
+		<div th:if="${#fields.hasErrors('activity')}" th:errors="*{activity}" style="color: red"></div>
+		
+		<label>活動分野：</label>
+		<select name="status"　th:field="*{field}">
+		<option value="福祉・保健">福祉・保健</option>
+		<option value="教育・人権">教育・人権</option>
+		<option value="まちづくり">まちづくり</option>
+		<option value="文化">文化</option>
+		<option value="環境">環境</option>
+		<option value="地域安全">地域安全</option>
+		<option value="国際">国際</option>
+		<option value="男女共同">男女共同</option>
+		<option value="子ども">子ども</option>
+		<option value="情報・科学">情報・科学</option>
+		<option value="経済">経済</option>
+		<option value="中間支援">中間支援</option>
+		</select>
+		<br>
+		<div th:if="${#fields.hasErrors('field')}" th:errors="*{field}" style="color: red"></div>
+		<input th:if="${id}" type="hidden" th:field="*{id}">
+		<input type="submit" value="送信">
+	</form>
+	
+	
+	<!--表の表示-->
+	<table border="1" th:unless="${#lists.isEmpty(list)}" style="table-layout: fixed;">
+		<tr>
+			<th>ID</th>
+			<th>法人</th>
+			<th>団体名</th>
+			<th>活動内容</th>
+			<th>活動分野</th>
+			<th>編集</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="obj : ${list}" align="center">
+			<td th:text="${obj.id}"></td>
+			<td th:text="${obj.status}"></td>
+			<td th:text="${obj.name}"></td>
+			<td th:text="${obj.activity}"></td>
+			<td th:text="${obj.field}"></td>
+			<td>
+				<form method="GET" th:action="@{/citizen/{id}(id=${obj.id})}">
+					<input type="submit" value="編集">
+				</form>				
+			</td>
+			<td>
+				<form method="POST" th:action="@{/citizen/delete}">
+					<input type="hidden" name="id" th:value="${obj.id}">
+					<input type="submit" value="削除">
+				</form>				
+			</td>	
+		</tr>
+	</table>
+	
+	<!--更新後の一覧への戻るボタン-->
+	<p th:unless="${citizenForm.newCitizen}">
+		<a href="#" th:href="@{/citizen}">戻る</a>
+	</p>
+
+</body>
+</html>
