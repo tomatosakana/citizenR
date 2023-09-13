@@ -13,9 +13,8 @@ citizenRは市民活動団体の情報を一覧で表示し、新規登録・更
 
 CitizenApplication.java内のmainメソッドを起動し、http://localhost:8080/citizen にアクセスします。
 
-# 開発環境
+# 使用技術
 
-* 言語　java
+* 言語　java17
 * データベース　H2 database
 * フレームワーク　spring framework
-
