@@ -3,6 +3,8 @@
 citizenRは市民活動団体の情報を一覧で表示し、新規登録・更新・削除ができるアプリケーションです。
 
 # デモ画面
+![citizenRデモ](https://github.com/tomatosakana/citizenR/assets/144295158/07ee748c-0cb4-49c3-b83b-df0d66c7c2f7)
+
 
 # 作成の経緯
 
