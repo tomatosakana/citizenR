@@ -34,6 +34,9 @@ mvcモデルで作成し、データベースの基本的なcrud操作を行い�
 
 CitizenApplication.java内のmainメソッドを起動し、http://localhost:8642/citizen にアクセスします。
 
+* ポート番号が重なる場合はapplication.propertiesで変更してください。  
+https://github.com/tomatosakana/citizenR/blob/master/src/main/resources/application.properties#L21
+
 # 使用技術
 
 * 言語　java17
