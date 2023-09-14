@@ -32,7 +32,7 @@ mvcモデルで作成し、データベースの基本的なcrud操作を行い�
 
 # 起動方法
 
-CitizenApplication.java内のmainメソッドを起動し、http://localhost:8080/citizen にアクセスします。
+CitizenApplication.java内のmainメソッドを起動し、http://localhost:8642/citizen にアクセスします。
 
 # 使用技術
 
